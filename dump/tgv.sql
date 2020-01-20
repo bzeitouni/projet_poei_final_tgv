@@ -1,3 +1,5 @@
+GRANT all ON *.* to webapp
+
 CREATE DATABASE SNCF_db
 
 CREATE TABLE Ville
