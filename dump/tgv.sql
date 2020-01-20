@@ -1,4 +1,5 @@
 CREATE DATABASE SNCF_db
+
 CREATE TABLE Ville
 (
     codepost INT NOT NULL,
