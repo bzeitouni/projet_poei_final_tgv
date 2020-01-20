@@ -3,8 +3,6 @@
   <title>Test PHP</title>
  </head>
  <body>
- <?php 
- echo '<p>Bienvenue sur l'application TGV</p>'; 
- ?>
+ <?php echo '<p>Bonjour le monde</p>'; ?>
  </body>
 </html>
