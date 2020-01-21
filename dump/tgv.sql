@@ -22,7 +22,6 @@ SET time_zone = "+00:00";
 -- Base de données : `tgv`
 --
 
-CREATE DATABASE tgv;
 
 USE tgv;
 
@@ -48,7 +47,7 @@ CREATE TABLE `TGV` (
   `idtrain` int NOT NULL,
   `idgaredepart` int DEFAULT NULL,
   `idgarearrivee` int DEFAULT NULL,
-  `heuredepart` varchar(100) DEFAULT NULL,
+  `heuredepart` datetime DEFAULT NULL,
   `heurearrivee` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -109,3 +108,18 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+/*!AJOUT D'ENREGISTREMENTS*/;
+
+/*!Creation des Villes*/;
+
+INSERT INTO `Ville` (`codepost`, `nomville`) VALUES ('75000', 'PARIS'), ('69000', 'LYON'),('13000', 'MARSEILLE')
+
+/*!Creation des Gares*/;
+
+INSERT INTO `Gare` (`idgare`, `nomgare`, `codepost`) VALUES ('691', 'Part-Dieu', '69000'), ('692', 'Perrache', '69000'), ('751', 'Gare du Nord', '75000'), ('752', 'Gare de Lyon', '75000'), ('753', 'Gare de l\'Est', '75000'), ('754', 'Gare Montparnasse', '75000'), ('131', 'Gare Saint-Charles', '13000')
+
+/*!Creation des Trains TGV*/;
+
+INSERT INTO `TGV` (`idtrain`, `idgaredepart`, `idgarearrivee`, `heuredepart`, `heurearrivee`) VALUES ('9881', '752', '131', '2020-01-21 11:00:00', '2020-01-21 14:00:00'), ('9882', '752', '692', '2020-01-22 20:00:00', '2020-01-22 22:00:00'), ('9883', '691', '131', '2020-01-23 09:00:00', '2020-01-23 10:00:00'), ('9884', '692', '753', '2020-02-28 16:00:00', '2020-02-28 19:00:00')
