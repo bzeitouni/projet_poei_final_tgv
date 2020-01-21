@@ -4,7 +4,7 @@ include "params.php";
 
 Print "Bienvenue sur le site de la SNCF !";
 Print  "</BR>";
-echo  "Voici la liste des train TGV disponibles: </BR>";
+echo  "Voici la liste des trains TGV disponibles: </BR>";
 
 // C'est la meilleur façon d'exécuter une requête SQL
 // Pour plus d'exemples, voir mysql_real_escape_string()
@@ -35,7 +35,7 @@ tfoot {
 echo "<table>
     <thead>
         <tr>
-            <th colspan=\"6\">Tableau d'Affichage</th>
+            <th colspan=\"6\">Tableau d'affichage des trains</th>
         </tr>
     </thead>
     <tbody>
