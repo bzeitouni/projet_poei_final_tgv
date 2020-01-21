@@ -35,7 +35,7 @@ tfoot {
 echo "<table>
     <thead>
         <tr>
-            <th colspan=\"5\">The table header</th>
+            <th colspan=\"6\">Tableau d'Affichage</th>
         </tr>
     </thead>
     <tbody>
@@ -66,6 +66,8 @@ $conn->close();
 
 echo "</tbody>
 </table>";
-echo  "A bientot sur nos lignes.\nLa team SNCF</BR>";
+
+echo  "A bientot sur nos lignes!</BR>";
+echo  "La team SNCF.</BR>";
 
 ?>
