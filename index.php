@@ -2,29 +2,19 @@
 
 include "params.php";
 
+Print "Bienvenue sur le site de la SNCF !";
+Print  "</BR>";
+echo  "Voici la liste des train TGV disponibles: </BR>";
+
 // C'est la meilleur façon d'exécuter une requête SQL
 // Pour plus d'exemples, voir mysql_real_escape_string()
-$query = "SELECT T.idtrain,G1.nomgare AS nomgaredepart,G2.nomgare AS nomgarearrivee,T.heuredepart,T.heurearrivee,TIMEDIFF(T.heurearrivee,T.heuredepart) AS duree\n"
+$sql = "SELECT T.idtrain,G1.nomgare AS nomgaredepart,G2.nomgare AS nomgarearrivee,T.heuredepart,T.heurearrivee,TIMEDIFF(T.heurearrivee,T.heuredepart) AS duree\n"
 . "FROM TGV T\n"
 . "JOIN Gare G1 ON T.idgaredepart=G1.idgare\n"
 . "JOIN Gare G2 ON T.idgarearrivee=G2.idgare\n"
 . "ORDER BY `T`.`heuredepart`  ASC";
 
-// Exécution de la requête
-$result = mysql_query($query);
-
-// Vérification du résultat
-// Ceci montre la requête envoyée à MySQL ainsi que l'erreur. Utile pour déboguer.
-if (!$result) {
-    $message  = 'Requête invalide : ' . mysql_error() . "\n";
-    $message .= 'Requête complète : ' . $query;
-    die($message);
-}
-
-// Utilisation du résultat
-// Tenter d'affichager $result ne vous donnera pas d'informations contenues dans la ressource
-// Une des fonctions MySQL de résultat doit être utilisée
-// Voir aussi mysql_result(), mysql_fetch_array(), mysql_fetch_row(), etc.
+$result = $conn->query($sql);
 
 echo "
 <style>
@@ -50,31 +40,32 @@ echo "<table>
     </thead>
     <tbody>
         <tr>
-            <td>Numéro de TGV</td>
-            <td>Gare de Départ</td>
-            <td>Gare d'Arrivée</td>
-            <td>Date de Départ</td>
-            <td>Date d'Arrivée</td>
-            <td>Durée</td>
+            <td>Numero de TGV</td>
+            <td>Gare de Depart</td>
+            <td>Gare d'Arrivee</td>
+            <td>Date de Depart</td>
+            <td>Date d'Arrivee</td>
+            <td>Duree</td>
         </tr>";
-
-while ($row = mysql_fetch_assoc($result)) {
-    echo "<tr>";
-    
-    echo "<td>".$row['idtrain']."</td>";
-    echo "<td>".$row['nomgaredepart']."</td>";
-    echo "<td>".$row['nomgarearrivee']."</td>";
-    echo "<td>".$row['heuredepart']."</td>";
-    echo "<td>".$row['heureearrivee']."</td>";
-    echo "<td>".$row['duree']."</td>";
-    echo "</tr>";
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        
+        echo "<td>".$row['idtrain']."</td>";
+        echo "<td>".$row['nomgaredepart']."</td>";
+        echo "<td>".$row['nomgarearrivee']."</td>";
+        echo "<td>".$row['heuredepart']."</td>";
+        echo "<td>".$row['heureearrivee']."</td>";
+        echo "<td>".$row['duree']."</td>";
+        echo "</tr>";
+    }
+} else {
+    echo "0 results";
 }
-
+$conn->close();
 
 echo "</tbody>
 </table>";
+echo  "A bientot sur nos lignes.\nLa team SNCF</BR>";
 
-// Libération des ressources associées au jeu de résultats
-// Ceci est effectué automatiquement à la fin du script
-mysql_free_result($result);
 ?>
