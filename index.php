@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
         echo "<td>".$row['nomgaredepart']."</td>";
         echo "<td>".$row['nomgarearrivee']."</td>";
         echo "<td>".$row['heuredepart']."</td>";
-        echo "<td>".$row['heureearrivee']."</td>";
+        echo "<td>".$row['heurearrivee']."</td>";
         echo "<td>".$row['duree']."</td>";
         echo "</tr>";
     }
