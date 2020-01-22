@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: bzeitouni/projet_poei_final_tgv_db:1.1
+        imagePullPolicy: Never
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: MySQL@007
+        - name: MYSQL_DATABASE
+          value: tgv
+        - name: MYSQL_USER
+          value: webapp
+        - name: MYSQL_PASSWORD
+          value: Bond@007
+        ports:
+        - containerPort: 3306
+          name: db
+        volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+
+      volumes:
+      - name: db-persistent-storage
+        persistentVolumeClaim:
+          claimName: db-pv-claim
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-pv-claim
+  labels:
+    app: db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi #5 GB
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  labels:
+    app: db
+spec:
+  type: NodePort
+  ports:
+  - port: 3306
+    protocol: TCP
+  selector:
+    app: db
