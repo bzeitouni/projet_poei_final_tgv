@@ -5,7 +5,7 @@ services:
         ports: 
             - "8001:80"
         volumes:
-            - ./projet_poei_final_tgv:/var/www/html/
+            - ./www:/var/www/html/
         links:
             - db
         networks:
@@ -21,7 +21,7 @@ services:
             MYSQL_PASSWORD: Bond@007
             MYSQL_ROOT_PASSWORD: MySQL@007 
         volumes:
-            - ./projet_poei_final_tgv/dump:/docker-entrypoint-initdb.d
+            - ./dump:/docker-entrypoint-initdb.d
             - ./conf:/etc/mysql/conf.d
             - persistent:/var/lib/mysql
         networks:
