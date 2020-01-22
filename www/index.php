@@ -60,7 +60,7 @@ if ($result->num_rows > 0) {
         echo "</tr>";
     }
 } else {
-    echo "0 results";
+    echo "No results";
 }
 $conn->close();
 
