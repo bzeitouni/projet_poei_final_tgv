@@ -1,22 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: www
+  name: php-apache
   labels:
-    app: www
+    app: php-apache
 spec:
   selector:
     matchLabels:
-      app: www
+      app: php-apache
   template:
     metadata:
       labels:
-        app: www
+        app: php-apache
     spec:
       containers:
       - name: php-apache
         image: bzeitouni/projet_poei_final_tgv_www:1.1
-        imagePullPolicy: Never
         ports:
         - containerPort: 80
 
@@ -24,13 +23,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: www-service
+  name: www
   labels:
-    run: www-service
+    app: php-apache
 spec:
   type: NodePort
   ports:
   - port: 80
     protocol: TCP
   selector:
-    app: www
+    app: php-apache
