@@ -1,6 +1,6 @@
 <?php
 
-$servername = "db-service";
+$servername = "db";
 $username = "webapp";
 $password = "Bond@007";
 $dbname = "tgv";

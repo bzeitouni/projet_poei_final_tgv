@@ -18,7 +18,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
+--    - name: mysql-config-volume ## volume name
+      configMap:
+        name: mysql-config ## name of ConfigMap
 -- Base de données : `tgv`
 --
 
