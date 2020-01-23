@@ -16,7 +16,7 @@ spec:
       containers:
       - name: mysql
         image: bzeitouni/projet_poei_final_tgv_db:1.2
-	args: ["default-authentication-plugin=mysql_native_password"]
+        args: ["--default-authentication-plugin=mysql_native_password"]
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: MySQL@007
